@@ -1,0 +1,20 @@
+<div ng-controller='customerscontroller'>
+	<p>Customers partial</p>
+	<form>
+		Customer name: <input type='text' ng-model='newcustomer.name'>
+		<input type='submit' ng-click='addcustomer(newcustomer)' value="Add customer">
+	</form>
+
+	<table>
+		<tr>
+			<th>Customer name</th>
+			<th>Created at</th>
+			<th>Action</th>
+		</tr>
+		<tr>
+			<td>Jen</td>
+			<td>4/6/15</td>
+			<td><button>Delete</button></td>
+		</tr>
+	</table>
+</div>
