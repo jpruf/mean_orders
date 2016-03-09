@@ -1,21 +1,19 @@
-<div>
+<div ng-controller='orderscontroller'>
 	<p>Add new orders</p>
 	<form>
 		Customer:
-			<select>
-				<option>Jen</option>
+			<select ng-options='customer.name as customer.name for customer in customers' ng-model='new_order.customer_name'>
+				<option value='' disabled>Choose customer</option>
 			</select>
 		Product:
-			<select>
-				<option>AF1</option>
+			<select ng-options='product.product as product.product for product in products' ng-model='new_order.product'>
+				<option value='' disabled>Choose product</option>
 			</select>
-		Customer:
-			<select>
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
+		Quantity:
+			<select ng-model='new_order.quantity'>
+				<option ng-repeat='i in quantity'>{{i}}</option>
 			</select>
-		<input type='submit' value='make order'>
+		<input ng-click='addorder()' type='submit' value='make order'>
 	</form>
 	<table>
 		<tr>
@@ -24,10 +22,11 @@
 			<th>#</th>
 			<th>Date</th>
 		</tr>
-		<tr>
-			<td>Jen</td>
-			<td>AFI</td>
-			<td>3/1/22<td>
+		<tr ng-repeat="order in orders | filter: filter_Name | orderBy: created_at">
+			<td ng-bind='order.customer_name'></td>
+			<td ng-bind='order.product'></td>
+			<td ng-bind='order.quantity'><td>
+			<td ng-bind='order.created_at | date: "longDate"'><td>
 		</tr>
 
 	</table>

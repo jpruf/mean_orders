@@ -11,9 +11,10 @@ module.exports = (function(){
 					console.log('\nError saving new customer');
 				}
 				else {
-					res.json(data);
+					res.redirect('/get_customers');
 				}
 			})
+
 		},
 		show: function(req,res){
 			Customer.find({}, function(err, customers){
@@ -23,6 +24,18 @@ module.exports = (function(){
 				}
 				else {
 					res.json(customers);
+				}
+			})
+		},
+		remove: function(req,res){
+			console.log(req.body._id);
+			Customer.remove({_id: req.body._id}, function(err, data){
+				if(err){
+					console.log(err);
+					console.log('\nError removing customers');
+				}
+				else {
+					res.redirect('/get_customers');
 				}
 			})
 		}
